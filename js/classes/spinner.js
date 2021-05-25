@@ -5,7 +5,7 @@ class Spinner extends Phaser.GameObjects.Container{
         this.scene.add.existing(this)
         
         this.fidget = this.scene.add.sprite(game.config.width/2, game.config.height/2, "spinner")
-        Align.scaleToGameW(this.fidget, .7)
+        Align.scaleToGameW(this.fidget, .4)
         this.fidget.angle = 130
         this.add(this.fidget)
 

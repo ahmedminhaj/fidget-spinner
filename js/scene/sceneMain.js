@@ -21,7 +21,7 @@ class SceneMain extends Phaser.Scene {
         this.spinSpeed = 0
         this.degree = 0
         this.num = 0
-        this.spinCount = 3
+        this.spinCount = 2
 
         this.spinner = new Spinner({ scene: this })
         this.bar = new Bar({ scene: this })
@@ -36,8 +36,14 @@ class SceneMain extends Phaser.Scene {
     }
 
     startSpin() {
-        this.spinSpeed = this.spinSpeed + 10000
-        this.degree = this.degree / 2 + 100
+        if (this.spinCount > 0) {
+            this.spinSpeed = this.spinSpeed + 10000
+            this.degree = (this.degree * 0.2) + 100
+        } else {
+            this.spinSpeed = this.spinSpeed + 0
+            this.degree = this.degree + 0
+        }
+
         this.num = 0.5
         this.spinCount -= 1
         console.log(this.spinCount)
@@ -50,7 +56,6 @@ class SceneMain extends Phaser.Scene {
         this.spinSpeed -= this.degree
 
         var per = (model.score) / 100
-        // console.log(per)
 
         if (this.degree == 0 || this.degree <= 0) {
             this.degree = 0
