@@ -15,16 +15,30 @@ class Spinner extends Phaser.GameObjects.Container {
 
     this.fidget.setInteractive();
     this.fidget.on("pointerdown", this.spinFidget, this);
+
+    this.tween = null
+    this.tweenProgress = null
   }
 
-  spinFidget(spin) {
-    console.log("spin fidget: " + spin);
+  spinFidget(spin$) {
+    console.log("spin fidget: " + spin$);
+    let spinNum = spin$
+    let spinduration = spin$/10
     // this.fidget.angle = degree;
-    this.scene.tweens.add({
+    this.tween = this.scene.tweens.add({
       targets: this.fidget,
-      duration: 8000,
-      angle: 320 * spin,
-      ease: Phaser.Math.Easing.Quartic.Out,
+      duration: spinduration*1000,
+      angle: 360 * spinNum,
+      ease: Phaser.Math.Easing.Quadratic.Out,
+      onUpdate: function(tween) {
+        //console.log(tween.progress)
+        this.tweenProgress = tween.progress
+        console.log("progress:::::"+this.tweenProgress)
+      }
     });
+  }
+
+  progressValue(){
+    console.log("progress:::::"+this.tweenProgress)
   }
 }

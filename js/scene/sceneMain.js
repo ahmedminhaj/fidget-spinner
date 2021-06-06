@@ -26,7 +26,7 @@ class SceneMain extends Phaser.Scene {
     //this.alignGrid.showNumbers();
 
     this.totalFidgetSpin = 0;
-    this.spinCount = 2;
+    this.spinCount = 5;
 
     this.spinner = new Spinner({ scene: this });
     this.bar = new Bar({ scene: this });
@@ -87,10 +87,12 @@ class SceneMain extends Phaser.Scene {
     } else {
       this.swipeRight.alpha = 0;
     }
+    // let spinProgress = this.spinner.progressValue()
+    // console.log("progress:::::"+spinProgress)
   }
 
   startSpin(swipeVelocity) {
-    this.totalFidgetSpin = (swipeVelocity / 10) | 0;
+    this.totalFidgetSpin = (swipeVelocity / 50) | 0;
     if (this.spinCount > 0) {
       this.totalFidgetSpin += this.totalFidgetSpin;
       this.spinCount -= 1;
@@ -101,8 +103,7 @@ class SceneMain extends Phaser.Scene {
     }
 
     this.spinner.spinFidget(this.totalFidgetSpin);
-
-    console.log(this.spinCount);
+    // this.spinner.progressValue()
   }
 
   loadFont(name, url) {
